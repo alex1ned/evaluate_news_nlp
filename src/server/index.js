@@ -1,6 +1,20 @@
 var path = require('path')
 const express = require('express')
+
+// ------------------ API START
 const mockAPIResponse = require('./mockAPI.js')
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+// !!! 1) Like this or ...
+const MeaningCloudAPI = new meaningCloud({
+    application_key: process.env.API_KEY
+ });
+// !!! 2) ... like this?
+const API_KEY = process.env.API_KEY;
+
+// ------------------ API END
 
 const app = express()
 

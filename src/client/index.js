@@ -1,7 +1,9 @@
 import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
 
-console.log(checkForName);
+const apiKey = "e50686f90fa228c6acd6ffbf672666f6";
 
-alert("I EXIST")
+console.log(checkForName);
+console.log(handleSubmit);
+
 console.log("CHANGE!!");
