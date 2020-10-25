@@ -3,8 +3,8 @@ import './styles/main.scss'
 import './styles/form.scss'
 
 // Import own modules
-import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
+import { validateInput } from './js/validateInput'
 
 
 console.log("Project NLP on News");
@@ -14,6 +14,6 @@ console.log("Project NLP on News");
 console.log("CHANGE!!");
 
 export {
-    checkForName,
-    handleSubmit
+    handleSubmit,
+    validateInput
 }

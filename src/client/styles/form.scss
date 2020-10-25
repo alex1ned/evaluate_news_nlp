@@ -1,4 +1,6 @@
+// Global variables
 $main-color: rgb(28, 102, 121);
+$hover-button-color: #1c795d;
 
 .form-container {
     display: flex;
@@ -6,38 +8,40 @@ $main-color: rgb(28, 102, 121);
     justify-content: center;
     align-items: center;
     width: 100%;
-}
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 3px;
-}
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 3px;
 
-textarea {
-    max-width: 800px;
-    font-size: inherit;
-    font-family: inherit;
-    max-height: 200px;
-    height: 150px;
-    color: black;
-    padding: 0.5em;
-}
+        textarea {
+            max-width: 800px;
+            font-size: inherit;
+            font-family: inherit;
+            max-height: 200px;
+            height: 150px;
+            color: black;
+            padding: 0.5em;
+            border: 2px solid $main-color;
+            border-radius: 0.5rem;
+        }
 
-input.submit {
-    background-color: $main-color;
-    color: white;
-    border: none;
-    height: 40px;
-    font-size: 1.1em;
-    width: 100%;
-    line-height: 16px;
-    margin: 10px 0;
-    transition: background-color 0.3s;
-}
+        input.submit {
+            background-color: $main-color;
+            color: white;
+            border: none;
+            height: 40px;
+            font-size: 1.1em;
+            width: 100%;
+            line-height: 16px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+            border-radius: 0.4rem;
 
-input.submit:hover {
-    background-color: #1c795d;
+            &:hover {
+                background-color: $hover-button-color;
+            }
+        }
+    }
 }
-
