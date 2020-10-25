@@ -25,6 +25,10 @@ $hover-button-color: #1c795d;
             padding: 0.5em;
             border: 2px solid $main-color;
             border-radius: 0.5rem;
+
+            &.no-value {
+                border: 1.5px solid red;
+            }
         }
 
         input.submit {

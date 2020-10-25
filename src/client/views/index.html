@@ -58,20 +58,24 @@
                 <h1>Input form</h1>
                 
                 <div class="form-container">
-                    <form action="">
-                        <textarea id="input-text" type="text" name="input-text" rows="1" cols="60" placeholder="Type something here!"></textarea>
-                        <!-- <input id="name" type="text" name="input" placeholder="Type in your text here"> -->
-                        <input class="submit" type="submit" name="" value="Submit">
+                    <form class="submission-form" onsubmit="return handleSubmit(event)" action="">
+                        <textarea id="input-text" class="" type="text" value="" name="input-text" rows="1" cols="60" placeholder="Type something here!"></textarea>
+                        <input class="submit" type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
                     </form>
                 </div>
             </section>
 
             <!-- **************** RESULT -->
             <section class="result">
-                <h1>Result</h1>
-                <p>
-                    The result is as follows:
-                </p>
+                <h1>Results</h1>
+                <div class="analysed-text-container">
+                    <h2>The text you analysed</h2>
+                    <p class="analysed-text"></p>
+                </div>
+                <div class="results-container">
+                    <h2>The results are as follows</h2>
+                    <p class="results"></p>
+                </div>
             </section>
         </main>
 

@@ -4,16 +4,12 @@ import './styles/form.scss'
 
 // Import own modules
 import { handleSubmit } from './js/formHandler'
-import { validateInput } from './js/validateInput'
+import { validateInput, moveTextToResults } from './js/helper'
 
-
-console.log("Project NLP on News");
-// console.log(checkForName);
-// console.log(handleSubmit);
-
-console.log("CHANGE!!");
+console.log("Project NLP on News is in progress");
 
 export {
     handleSubmit,
-    validateInput
+    validateInput,
+    moveTextToResults
 }
