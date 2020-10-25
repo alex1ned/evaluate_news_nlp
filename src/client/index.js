@@ -1,7 +1,6 @@
 import './styles/resets.scss'
-import './styles/base.scss'
+import './styles/main.scss'
 import './styles/form.scss'
-import './styles/header.scss'
 
 // Import own modules
 import { checkForName } from './js/nameChecker'
