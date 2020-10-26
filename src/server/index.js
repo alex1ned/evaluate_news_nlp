@@ -1,7 +1,5 @@
 // ------------------ Import modules
-import {
-    postTextToAnalyse
-} from './route_functions.scss';
+const routeHandlers = require('./route_functions.js')
 
 var path = require('path')
 const express = require('express')
@@ -10,7 +8,6 @@ const express = require('express')
 
 // ------------------ Global Variables
 // --------- API CREDENTIALS
-const mockAPIResponse = require('./mockAPI.js')
 const dotenv = require('dotenv');
 dotenv.config();
 // !!! 2) ... like this?
@@ -36,14 +33,31 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
+// app.get('/test', function (req, res) {
+//     res.send(mockAPIResponse)
+// })
+
+
+
+
+
+
+// function postTextToAnalyse(req, res) {
+//     console.log(req.body);
+//     const newText = req.body;
+// };
+
+
+
+
+
+
+
 
 
 // ------ 1) POST route (counter to formHandler)
 // --------- a) The formHandler sends the text via POST
-app.post('/postTextToAnalyse', postTextToAnalyse);
+app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
 // --------- b) We store the text as string here
 // --------- c) Then we go to POST ist to API
 

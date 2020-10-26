@@ -1,9 +1,8 @@
-const postTextToAnalyse = (req, res) => {
-    console.log(req.body);
-    const newText = req.body;
-
+let routeFunctions = {
+    postTextToAnalyse: function(req, res) {
+        console.log(this.req.body);
+        const newText = this.req.body;
+    }
 };
 
-export {
-    postTextToAnalyse
-}
+module.exports = routeFunctions;
