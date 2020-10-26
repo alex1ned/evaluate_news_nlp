@@ -1,4 +1,8 @@
-import { validateInput, moveTextToResults } from "./helper";
+import {
+    validateInput,
+    moveTextToResults,
+    postTextToServer
+} from "./helper";
 
 function handleSubmit(event) {
     event.preventDefault()
@@ -13,11 +17,16 @@ function handleSubmit(event) {
             formText.classList.remove('no-value');
         }
         
-        moveTextToResults(formText);
+        // Post text to server
+        postTextToServer('/postTextToAnalyse', formText.value);
 
-        // Run API here
-        // Brainstorm functionality
-        // How to access API key etc.
+        // .. chained once resolved - get results from server
+        // getSentiment();
+
+        // ..chained = update UI
+
+
+        moveTextToResults(formText);
     }
     
     // ... if not, notify the user.
@@ -33,4 +42,6 @@ function handleSubmit(event) {
     // })
 }
 
-export { handleSubmit }
+export {
+    handleSubmit
+};
