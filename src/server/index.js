@@ -54,7 +54,6 @@ app.listen(8081, function () {
 
 
 
-
 // ------ 1) POST route (counter to formHandler)
 // --------- a) The formHandler sends the text via POST
 app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
