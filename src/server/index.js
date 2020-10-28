@@ -1,10 +1,8 @@
 // ------------------ Import modules
-const routeHandlers = require('./route_functions.js')
+const routeHandlers = require('./route_functions.js');
 
-var path = require('path')
-const express = require('express')
-
-
+var path = require('path');
+const express = require('express');
 
 // ------------------ Global Variables
 // --------- API CREDENTIALS
@@ -18,9 +16,14 @@ let apiResponse = [];
 
 
 // ------------------ INITIATE APP
-const app = express()
-app.use(express.static('dist'))
+const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
+app.use(express.static('dist'))
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     // !!! What is the difference among the two?
@@ -38,27 +41,18 @@ app.listen(8081, function () {
 // })
 
 
-
-
-
-
-// function postTextToAnalyse(req, res) {
-//     console.log(req.body);
-//     const newText = req.body;
-// };
-
-
-
-
-
-
-
-
 // ------ 1) POST route (counter to formHandler)
 // --------- a) The formHandler sends the text via POST
-app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
+let analysis = {};
+const postTextToAnalyse = (req, res) => {
+    analysis.rawText = req.body;
+    // res.send(newText);
+    // console.log(newText);
+};
+app.post('/postTextToAnalyse', postTextToAnalyse);
+// app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
 // --------- b) We store the text as string here
-// --------- c) Then we go to POST ist to API
+// --------- c) Then we go to POST it to API
 
 // ------ 2) Call API
 // --------- a) POST request containing the text as string.
@@ -67,3 +61,7 @@ app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
 // ------ 3) GET route (counter)
 // --------- a) POST request containing the text as string.
 // --------- b) GET request retrieving the results.
+const getAnalysis = (req, res) => {
+    res.send(analysis);
+};
+app.get('/getAnalysis', getAnalysis);

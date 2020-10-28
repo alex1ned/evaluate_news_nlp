@@ -9,7 +9,12 @@ function handleSubmit(event) {
 
     // Get the form element of website
     const formText = document.getElementById('input-text');
+    const formTextObject = {
+        text: formText.value
+    };
+
     let isInputValid = Client.validateInput(formText);
+
 
     // If there is input, then run the API
     if (isInputValid) {
@@ -18,7 +23,7 @@ function handleSubmit(event) {
         }
         
         // Post text to server
-        postTextToServer('/postTextToAnalyse', formText.value);
+        postTextToServer('http://localhost:8081/postTextToAnalyse', formTextObject);
 
         // .. chained once resolved - get results from server
         // getSentiment();

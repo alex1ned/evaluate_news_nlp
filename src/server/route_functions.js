@@ -1,7 +1,8 @@
 let routeFunctions = {
     postTextToAnalyse: function(req, res) {
-        console.log(this.req.body);
         const newText = this.req.body;
+        req.sendFile(path.resolve('src/client/views/index.html'))
+        console.log(newText);
     }
 };
 
