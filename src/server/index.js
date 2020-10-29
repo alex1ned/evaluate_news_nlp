@@ -47,7 +47,7 @@ let analysis = {};
 const postTextToAnalyse = (req, res) => {
     const receivedText = createElement('expressions', req.query);
     if (receivedText) {
-        analysis.rawText = req.body;
+        newText = analysis.rawText = req.body;
         res.status(201).send(newText);
     }
     else {
