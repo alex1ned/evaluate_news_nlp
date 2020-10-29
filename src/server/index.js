@@ -45,9 +45,14 @@ app.listen(8081, function () {
 // --------- a) The formHandler sends the text via POST
 let analysis = {};
 const postTextToAnalyse = (req, res) => {
-    analysis.rawText = req.body;
-    // res.send(newText);
-    // console.log(newText);
+    const receivedText = createElement('expressions', req.query);
+    if (receivedText) {
+        analysis.rawText = req.body;
+        res.status(201).send(newText);
+    }
+    else {
+        res.status(400).send();
+    }
 };
 app.post('/postTextToAnalyse', postTextToAnalyse);
 // app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);

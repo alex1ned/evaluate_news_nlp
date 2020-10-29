@@ -12,26 +12,30 @@ function moveTextToResults(textElement) {
 }
 
 const postTextToServer = async (url="", text = {}) => {
-    const response = await fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        // !!! Check if this is correct
-        body: JSON.stringify(text),
-    });
-    
     try {
-        // console.log(response);
-        const newData = await respponse.json();
-        console.log(newData);
-    } catch(error) {
-        // console.log(error);
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // !!! Check if this is correct
+            body: JSON.stringify(text),
+        });
+
+        if (response.ok) {
+            const JSONresponse = await response.json()
+            console.log(JSONresponse);
+        }
+
+        throw new Error("Request Failed!");
     }
-}
-// const postTextToServer = (url="", text) => {};
+    catch(error) {
+        console.log(error);
+    }
+};
+
 
 export {
     validateInput,
