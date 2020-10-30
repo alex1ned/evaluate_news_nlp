@@ -29,7 +29,7 @@ const postTextToServer = async (url="", text = {}) => {
             console.log(JSONresponse);
         }
 
-        throw new Error("Request Failed!");
+        // throw new Error("Request Failed!");
     }
     catch(error) {
         console.log(error);

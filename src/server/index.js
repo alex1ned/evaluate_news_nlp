@@ -43,19 +43,19 @@ app.listen(8081, function () {
 
 // ------ 1) POST route (counter to formHandler)
 // --------- a) The formHandler sends the text via POST
-let analysis = {};
-const postTextToAnalyse = (req, res) => {
-    const receivedText = createElement('expressions', req.query);
-    if (receivedText) {
-        newText = analysis.rawText = req.body;
-        res.status(201).send(newText);
-    }
-    else {
-        res.status(400).send();
-    }
-};
-app.post('/postTextToAnalyse', postTextToAnalyse);
-// app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
+// let analysis = {};
+// const postTextToAnalyse = (req, res) => {
+//     const receivedText = req.query;
+//     if (receivedText) {
+//         newText = analysis.rawText = req.body;
+//         res.status(201).send(newText);
+//     }
+//     else {
+//         res.status(400).send();
+//     }
+// };
+// app.post('/postTextToAnalyse', postTextToAnalyse);
+app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
 // --------- b) We store the text as string here
 // --------- c) Then we go to POST it to API
 

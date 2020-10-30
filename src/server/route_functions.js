@@ -1,8 +1,15 @@
+let analysis = {};
+
 let routeFunctions = {
     postTextToAnalyse: function(req, res) {
-        const newText = this.req.body;
-        req.sendFile(path.resolve('src/client/views/index.html'))
-        console.log(newText);
+        const receivedText = req.query;
+        if (receivedText) {
+            newText = analysis.rawText = req.body;
+            res.status(201).send(newText);
+        }
+        else {
+            res.status(400).send();
+        }
     }
 };
 
