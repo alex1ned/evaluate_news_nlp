@@ -20,7 +20,6 @@ const postTextToServer = async (url="", text = {}) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            // !!! Check if this is correct
             body: JSON.stringify(text),
         });
 
@@ -28,8 +27,6 @@ const postTextToServer = async (url="", text = {}) => {
             const JSONresponse = await response.json()
             console.log(JSONresponse);
         }
-
-        // throw new Error("Request Failed!");
     }
     catch(error) {
         console.log(error);

@@ -1,24 +1,20 @@
-// ------------------ Import modules
+// ------------------------------------- Import modules
+// !!! How to import two modules from the file?
 const routeHandlers = require('./route_functions.js');
+// const sentimentAnalysis = require('./route_functions.js');
 
 var path = require('path');
 const express = require('express');
-
-// ------------------ Global Variables
-// --------- API CREDENTIALS
-const dotenv = require('dotenv');
-dotenv.config();
-// !!! 2) ... like this?
-const API_KEY = process.env.API_KEY;
-// --------- OTHER
-let apiResponse = [];
-
-
-
-// ------------------ INITIATE APP
-const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
+// ------------------------------------- Global Variables
+// !!! NEED ? let apiResponse = [];
+
+
+
+// ------------------------------------- INITIATE APP
+const app = express();
 
 app.use(express.static('dist'))
 app.use(cors());
@@ -36,37 +32,15 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
 
-// app.get('/test', function (req, res) {
-//     res.send(mockAPIResponse)
-// })
 
 
+
+// ------------------------------------- ROUTES
 // ------ 1) POST route (counter to formHandler)
 // --------- a) The formHandler sends the text via POST
-// let analysis = {};
-// const postTextToAnalyse = (req, res) => {
-//     const receivedText = req.query;
-//     if (receivedText) {
-//         newText = analysis.rawText = req.body;
-//         res.status(201).send(newText);
-//     }
-//     else {
-//         res.status(400).send();
-//     }
-// };
-// app.post('/postTextToAnalyse', postTextToAnalyse);
+// --------- b) The text is stored in an object in file "route_functions"
 app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
-// --------- b) We store the text as string here
-// --------- c) Then we go to POST it to API
-
-// ------ 2) Call API
-// --------- a) POST request containing the text as string.
-// --------- b) GET request retrieving the results.
 
 // ------ 3) GET route (counter)
-// --------- a) POST request containing the text as string.
-// --------- b) GET request retrieving the results.
-const getAnalysis = (req, res) => {
-    res.send(analysis);
-};
-app.get('/getAnalysis', getAnalysis);
+// --------- a) GET request retrieving the final results
+// app.get('/getAnalysis', getAnalysis);

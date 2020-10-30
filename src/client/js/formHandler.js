@@ -4,6 +4,10 @@ import {
     postTextToServer
 } from "./helper";
 
+import {
+    getSentiment
+} from "./testAPI.js";
+
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -22,6 +26,7 @@ function handleSubmit(event) {
         }     
         // Post text to server
         postTextToServer('http://localhost:8081/postTextToAnalyse', formTextObject);
+        // .then() //Get sentiment
 
         // .. chained once resolved - get results from server
         // getSentiment();

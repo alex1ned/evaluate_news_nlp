@@ -4,6 +4,7 @@ import './styles/form.scss';
 
 // Import own modules
 import { handleSubmit } from './js/formHandler';
+import { testAPI } from './js/testAPI.js';
 import {
     validateInput,
     moveTextToResults,
@@ -16,5 +17,6 @@ export {
     handleSubmit,
     validateInput,
     moveTextToResults,
-    postTextToServer
+    postTextToServer,
+    testAPI
 };
