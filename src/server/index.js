@@ -1,19 +1,16 @@
 // ------------------------------------- Import modules
-// !!! How to import two modules from the file?
 const routeHandlers = require('./route_functions.js');
-// const sentimentAnalysis = require('./route_functions.js');
-
 var path = require('path');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // ------------------------------------- Global Variables
-// !!! NEED ? let apiResponse = [];
 
 
 
-// ------------------------------------- INITIATE APP
+
+// ------------------------------------- INITIATE SERVER
 const app = express();
 
 app.use(express.static('dist'))

@@ -1,6 +1,7 @@
-// ------------------------------------- Global Variables
-const getSentiment = async (url, text) => {
-    const response = await fetch(url + text);
+const fetch = require("node-fetch");
+
+const getSentiment = async (url, text, modelType) => {
+    const response = await fetch(url + text + modelType);
     
     try {
         if (response.ok) {

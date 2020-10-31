@@ -4,10 +4,6 @@ import {
     postTextToServer
 } from "./helper";
 
-import {
-    getSentiment
-} from "./testAPI.js";
-
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -24,26 +20,18 @@ function handleSubmit(event) {
         if (formText.classList.contains('no-value')) {
             formText.classList.remove('no-value');
         }     
-        // Post text to server
-        postTextToServer('http://localhost:8081/postTextToAnalyse', formTextObject);
-        // .then() //Get sentiment
-
-        // .. chained once resolved - get results from server
-        // getSentiment();
-        // ..chained = update UI
-        moveTextToResults(formText);
+        // Post text to server and receive the analysis
+        Client.postTextToServer('http://localhost:8081/postTextToAnalyse', formTextObject);
+        
+        // ... then update the UI
+        Client.moveTextToResults(formText);
     }
     
-    // ... if not, notify the user.
+    // ... if there is no input, notify the user.
     else {
         formText.classList.add('no-value');
         alert("Please provide an input text before submitting."); 
     }
 }
 
-
-
-
-export {
-    handleSubmit
-};
+export { handleSubmit };

@@ -1,14 +1,15 @@
+// ------------------------------------- IMPORT files
 const getSentiment = require('./apicall.js');
-
-// ------------------------------------- Global Variables
-const baseURL = "https://api.meaningcloud.com/sentiment-2.1&key=";
-// --------- API CREDENTIALS
 const dotenv = require('dotenv');
+const fetch = require("node-fetch");
 dotenv.config();
-// !!! 2) ... like this?
+
+// ------------------------------------- API Variables
+const baseURL = "https://api.meaningcloud.com/sentiment-2.1&key=";
 const API_KEY = process.env.API_KEY;
-let language = "&lang=en";
-let textPrefix = "&txt=";
+const language = "&lang=en";
+const textPrefix = "&txt=";
+const modelType = "&model=general";
 
 let urlToAPI = `${baseURL}${API_KEY}${language}${textPrefix}`;
 
@@ -16,17 +17,25 @@ let urlToAPI = `${baseURL}${API_KEY}${language}${textPrefix}`;
 let analysis = {};
 const routeFunctions = {
     // 1) function stores the text to analyse in analysis object
-    postTextToAnalyse: function(req, res) {
+    postTextToAnalyse: async function(req, res) {
         const receivedText = req.query;
         if (receivedText) {
-            newText = analysis.rawText = req.body;
-            // res.status(201).send(newText);
-
-            // Call API here
-            const apiResponse = getSentiment(urlToAPI, newText);
+            const textToAnalyse = req.body.text;
             
-            console.log(apiResponse);
-            res.status(201).send(apiResponse);
+            // Call API here
+            const apiResponse = await getSentiment(urlToAPI, textToAnalyse, modelType);            
+            
+            // Set parameters we would like to see on app
+            analysis = {
+                confidence: apiResponse.confidence,
+                score: apiResponse.score_tag,
+                irony: apiResponse.irony,
+                agreement: apiResponse.agreement,
+                subjectivity: apiResponse.subjectivity
+            }
+            
+            // res.status(201).send(apiResponse);
+            res.status(201).send(analysis);
 
         }
         else {
@@ -34,11 +43,10 @@ const routeFunctions = {
         }
     },
 
-    // 3) function returns the complete analysis object
+    // 2) function returns the complete analysis object
     getAnalysis: function(req, res) {
         res.send(analysis);
     }
 };
 
 module.exports = routeFunctions;
-// module.exports = analysis;
