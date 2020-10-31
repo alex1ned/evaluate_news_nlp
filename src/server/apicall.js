@@ -1,7 +1,10 @@
 const fetch = require("node-fetch");
 
 const getSentiment = async (url, text, modelType) => {
-    const response = await fetch(url + text + modelType);
+    const response = await fetch(url + text + modelType, {
+        method: 'POST',
+        mode: 'cors',
+    });
     
     try {
         if (response.ok) {
