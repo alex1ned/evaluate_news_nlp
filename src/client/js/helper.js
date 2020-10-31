@@ -24,8 +24,9 @@ const postTextToServer = async (url="", text = {}) => {
         });
 
         if (response.ok) {
-            const JSONresponse = await response.json()
+            const JSONresponse = await response.json();
             console.log(JSONresponse);
+            return JSONresponse;
         }
     }
     catch(error) {
@@ -33,9 +34,31 @@ const postTextToServer = async (url="", text = {}) => {
     }
 };
 
+const updateUI = (theSentiment = {}) => {
+    const resultsParent = document.querySelector('ul.results');
+    
+    const sentimentScore = document.querySelector('li.sentimentScore');
+    const subjectivity = document.querySelector('li.subjectivity');
+    const confidence = document.querySelector('li.confidence');
+    const irony = document.querySelector('li.irony');
+    const agreement = document.querySelector('li.agreement');
+
+    sentimentScore.innerHTML = `Score: ${theSentiment.score}`;
+    subjectivity.innerHTML = `Subjectivity: ${theSentiment.subjectivity}`;
+    confidence.innerHTML = `Confidence: ${theSentiment.confidence} from max. 100`;
+    irony.innerHTML = `Irony: ${theSentiment.irony}`;
+    agreement.innerHTML = `Agreement: ${theSentiment.agreement}`;
+
+    resultsParent.appendChild(sentimentScore);
+    resultsParent.appendChild(subjectivity);
+    resultsParent.appendChild(confidence);
+    resultsParent.appendChild(irony);
+    resultsParent.appendChild(agreement);
+}
 
 export {
     validateInput,
     moveTextToResults,
-    postTextToServer
+    postTextToServer,
+    updateUI
 }

@@ -14,7 +14,48 @@ const modelType = "&model=general";
 let urlToAPI = `${baseURL}${API_KEY}${language}${textPrefix}`;
 
 
-let analysis = {};
+const transposeAPIresponse = (APIobject = {} ) => {
+    const theScore = APIobject.score_tag;
+    const theIrony = APIobject.irony;
+    const theAgreement = APIobject.agreement;
+    const theSubjectivity = APIobject.subjectivity;
+
+    const scoreTag = {
+        'P+': "Strongly positive",
+        'P': "Positive",
+        'NEU': "Neutral",
+        'N': "Negative",
+        'N+': "Strongly negative",
+        'NONE': "No sentiment detected"
+    };
+
+    const agreementTag = {
+        "AGREEMENT": "The different text elements have the same polarity",
+        "DISAGREEMENT": "There is disagreement between the different text elements' polarity"
+    }
+
+    const subjectivityTag = {
+        "OBJECTIVE": "The text does not have any marks of subjectivity",
+        "SUBJECTIVE": "The text appears to have subjective bias"
+    }
+
+    const ironyTag = {
+        "NONIRONIC": "The text does not have marks of irony",
+        "IRONIC": "The text seems to be ironic"
+    }
+
+    let formattedAPIresponse = {
+        confidence: APIobject.confidence,
+        score: scoreTag[theScore],
+        irony: ironyTag[theIrony],
+        agreement: agreementTag[theAgreement],
+        subjectivity: subjectivityTag[theSubjectivity]
+    };
+
+    return formattedAPIresponse;
+};
+
+
 const routeFunctions = {
     // 1) function stores the text to analyse in analysis object
     postTextToAnalyse: async function(req, res) {
@@ -23,18 +64,8 @@ const routeFunctions = {
             const textToAnalyse = req.body.text;
             
             // Call API here
-            const apiResponse = await getSentiment(urlToAPI, textToAnalyse, modelType);            
-            
-            // Set parameters we would like to see on app
-            analysis = {
-                confidence: apiResponse.confidence,
-                score: apiResponse.score_tag,
-                irony: apiResponse.irony,
-                agreement: apiResponse.agreement,
-                subjectivity: apiResponse.subjectivity
-            }
-            
-            // res.status(201).send(apiResponse);
+            const apiResponse = await getSentiment(urlToAPI, textToAnalyse, modelType);                
+            let analysis = transposeAPIresponse(apiResponse);
             res.status(201).send(analysis);
 
         }

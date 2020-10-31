@@ -31,8 +31,3 @@ app.listen(8081, function () {
 // --------- a) The formHandler sends the text via POST
 // --------- b) The text is stored in an object in file "route_functions"
 app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
-
-// ------ 3) GET route (counter)
-// !!! I think i don't need this
-// --------- a) GET request retrieving the final results
-// app.get('/getAnalysis', getAnalysis);

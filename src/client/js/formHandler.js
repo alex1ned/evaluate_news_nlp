@@ -1,10 +1,11 @@
 import {
     validateInput,
     moveTextToResults,
-    postTextToServer
+    postTextToServer,
+    updateUI
 } from "./helper";
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
     event.preventDefault()
 
     // Get the form element of website
@@ -20,14 +21,15 @@ function handleSubmit(event) {
         if (formText.classList.contains('no-value')) {
             formText.classList.remove('no-value');
         }     
-        // Post text to server and receive the analysis
-        Client.postTextToServer('http://localhost:8081/postTextToAnalyse', formTextObject);
+        // Post text to server and receive the analysis ...
+        const theSentiment = await Client.postTextToServer('http://localhost:8081/postTextToAnalyse', formTextObject);
         
         // ... then update the UI
+        Client.updateUI(theSentiment);
         Client.moveTextToResults(formText);
     }
     
-    // ... if there is no input, notify the user.
+    // If there is no input, notify the user.
     else {
         formText.classList.add('no-value');
         alert("Please provide an input text before submitting."); 
