@@ -5,10 +5,6 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-// ------------------------------------- Global Variables
-
-
-
 
 // ------------------------------------- INITIATE SERVER
 const app = express();
@@ -30,8 +26,6 @@ app.listen(8081, function () {
 })
 
 
-
-
 // ------------------------------------- ROUTES
 // ------ 1) POST route (counter to formHandler)
 // --------- a) The formHandler sends the text via POST
@@ -39,5 +33,6 @@ app.listen(8081, function () {
 app.post('/postTextToAnalyse', routeHandlers.postTextToAnalyse);
 
 // ------ 3) GET route (counter)
+// !!! I think i don't need this
 // --------- a) GET request retrieving the final results
 // app.get('/getAnalysis', getAnalysis);
