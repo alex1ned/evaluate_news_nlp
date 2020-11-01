@@ -1,8 +1,9 @@
+// ---------------------- Import syle sheets
 import './styles/resets.scss';
 import './styles/main.scss';
 import './styles/form.scss';
 
-// Import own modules
+// ---------------------- Import modules
 import { handleSubmit } from './js/formHandler';
 import {
     validateInput,
@@ -11,8 +12,8 @@ import {
     updateUI
 } from './js/helper';
 
-console.log("Project NLP on News is in progress");
 
+// ---------------------- Export modules
 export {
     handleSubmit,
     validateInput,

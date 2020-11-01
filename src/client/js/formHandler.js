@@ -1,3 +1,4 @@
+// ---------------------- Import helper functions
 import {
     validateInput,
     moveTextToResults,
@@ -5,6 +6,8 @@ import {
     updateUI
 } from "./helper";
 
+
+// ---------------------- FUNCTION that handles the text submission
 async function handleSubmit(event) {
     event.preventDefault()
 

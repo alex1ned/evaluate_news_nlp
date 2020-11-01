@@ -1,3 +1,4 @@
+// --------- FUNCTION validates the user input
 function validateInput(inputText) {
     if (inputText.value.trim()) {
         return true;
@@ -5,12 +6,14 @@ function validateInput(inputText) {
     return false;
 }
 
+// --------- FUNCTION moves the text to the results section (called after submit)
 function moveTextToResults(textElement) {
     const elementToSet = document.querySelector(".analysed-text");
     elementToSet.innerHTML = textElement.value;
     textElement.value = "";
 }
 
+// --------- FUNCTION makes a POST request to the provided URL and Object
 const postTextToServer = async (url="", text = {}) => {
     try {
         const response = await fetch(url, {
@@ -34,6 +37,7 @@ const postTextToServer = async (url="", text = {}) => {
     }
 };
 
+// --------- FUNCTION updates the UI
 const updateUI = (theSentiment = {}) => {
     const resultsParent = document.querySelector('ul.results');
     
