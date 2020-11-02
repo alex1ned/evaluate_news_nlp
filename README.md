@@ -7,8 +7,11 @@ This project uses webpack, sass, service workers, and the MeaningCloud API to pe
 
 * Fork the proejct and initiate own git repo.
 * Navigate to your project folder using your terminal.
-* Enusre you have all required dependencies installed (incl. node).
-* Run: `npm run start-nlp-project`
+* Run `npm install`
+* Start the backend server `npm start`
+* Start the development server: `npm run build-dev`
+* `npm run build-dev` creates a minified production build in the dist folder
+* Run the jest tests: `npm run test`
 
 
 ## Using the webpage
